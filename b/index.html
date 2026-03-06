@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="tr" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>S@TRAT | Siber-Mech Cephanelik</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="loader">
+      <h1
+        style="
+          color: var(--primary);
+          font-size: 3rem;
+          animation: pulse 1.5s infinite;
+        "
+      >
+        S@TRAT
+      </h1>
+      <p>Sistemler Başlatılıyor...</p>
+    </div>
+    <header>
+      <nav>
+        <div class="logo" onclick="location.reload()">S@<span>TRAT</span></div>
+        <div class="search-container">
+          <input
+            type="text"
+            id="product-search"
+            placeholder="Efsanevi donanımları ara... (İpucu: 404)"
+            onkeyup="handleSearch()"
+            autocomplete="off"
+          />
+          <i class="fas fa-search"></i>
+          <div id="search-suggestions" class="suggestions-box"></div>
+        </div>
+        <div class="nav-links">
+          <button id="theme-toggle" class="icon-btn" aria-label="Tema Değiştir">
+            <i class="fas fa-moon"></i>
+          </button>
+          <div class="cart-btn" onclick="openFavorites()" title="Favorilerim">
+            <i class="fas fa-heart"></i><span id="fav-count">0</span>
+          </div>
+          <div id="auth-section" style="display: flex; gap: 10px"></div>
+          <div class="cart-btn" onclick="toggleCart(true)" title="Sepetim">
+            <i class="fas fa-shopping-basket"></i><span id="cart-count">0</span>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section
+        class="hero-slider-container"
+        style="overflow: hidden; padding: 30px 0"
+      >
+        <h2
+          style="text-align: center; font-size: 2rem; margin-bottom: 20px"
+          class="decipher-title"
+        >
+          Efsanevi Ekipmanlar
+        </h2>
+        <div class="swiper mySwiper featured-swiper" style="padding: 50px 0">
+          <div class="swiper-wrapper">
+            <div
+              class="swiper-slide featured-slide"
+              style="background: linear-gradient(135deg, #8b0000, #2c2c2c)"
+            >
+              <div class="slide-content-3d">
+                <div class="slide-icon">⚔️</div>
+                <h3>Katana Red-Switch</h3>
+                <p>Samuray'ın Hızı</p>
+                <span class="slide-price">3500 TL</span>
+              </div>
+            </div>
+            <div
+              class="swiper-slide featured-slide"
+              style="background: linear-gradient(135deg, #b8860b, #4a4a4a)"
+            >
+              <div class="slide-content-3d">
+                <div class="slide-icon">🦅</div>
+                <h3>Altın Kanat Kulaklık</h3>
+                <p>Retro Efsane</p>
+                <span class="slide-price">4500 TL</span>
+              </div>
+            </div>
+            <div
+              class="swiper-slide featured-slide"
+              style="
+                background: linear-gradient(135deg, #ff4d00, #ffd700);
+                border-color: #ffd700;
+              "
+            >
+              <div class="slide-content-3d">
+                <div
+                  class="slide-icon"
+                  style="filter: drop-shadow(0 0 15px gold)"
+                >
+                  🔥
+                </div>
+                <h3>Kutsal Ateş Klavyesi</h3>
+                <p>Johto Efsanesi</p>
+                <span class="slide-price" style="color: #ffd700">9999 TL</span>
+              </div>
+            </div>
+            <div
+              class="swiper-slide featured-slide"
+              style="background: linear-gradient(135deg, #c0c0c0, #2c3e50)"
+            >
+              <div class="slide-content-3d">
+                <div class="slide-icon">🛡️</div>
+                <h3>Ağır Zırhlı Mouse</h3>
+                <p>Sarsılmaz Güç</p>
+                <span class="slide-price">2100 TL</span>
+              </div>
+            </div>
+            <div
+              class="swiper-slide featured-slide"
+              style="
+                background: linear-gradient(135deg, #000, #0a3300);
+                border: 1px solid #39ff14;
+              "
+            >
+              <div class="slide-content-3d">
+                <div class="slide-icon" style="text-shadow: 0 0 15px #39ff14">
+                  🧠
+                </div>
+                <h3 style="color: #39ff14">Nöral Arayüz</h3>
+                <p style="color: #39ff14">Yasadışı Eklenti</p>
+                <span
+                  class="slide-price"
+                  style="color: #39ff14; border-color: #39ff14"
+                  >15000 TL</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </section>
+
+      <div class="container">
+        <div id="tactical-radar" class="tactical-panel">
+          <div class="radar-header">
+            <i
+              class="fas fa-satellite-dish"
+              style="animation: pulse 2s infinite"
+            ></i>
+            <span class="decipher-title">Taktiksel Sensörler</span>
+          </div>
+          <div class="radar-controls">
+            <div class="price-reactor">
+              <label for="price-range"
+                >Enerji Limiti (Maks Fiyat):
+                <span
+                  id="price-output"
+                  style="
+                    color: var(--secondary);
+                    text-shadow: 0 0 10px var(--secondary);
+                  "
+                  >15000 TL</span
+                ></label
+              >
+              <input
+                type="range"
+                id="price-range"
+                min="0"
+                max="15000"
+                step="100"
+                value="15000"
+                class="neon-slider"
+                oninput="updatePriceDisplay()"
+                onchange="triggerFilter()"
+              />
+            </div>
+            <button
+              id="best-seller-btn"
+              class="hologram-btn"
+              onclick="toggleBestSellers()"
+            >
+              <i class="fas fa-crown"></i> Efsanevi Seçkinler
+            </button>
+          </div>
+        </div>
+
+        <div class="category-filters" id="category-filters">
+          <button class="filter-btn active" onclick="setCategory('Tümü')">
+            Tüm Cephanelik
+          </button>
+          <button class="filter-btn" onclick="setCategory('Samuray Serisi')">
+            Samuray Serisi
+          </button>
+          <button class="filter-btn" onclick="setCategory('Şövalye Zırhı')">
+            Şövalye Zırhı
+          </button>
+          <button class="filter-btn" onclick="setCategory('Retro Macera')">
+            Retro Macera
+          </button>
+        </div>
+        <div id="products-grid"></div>
+      </div>
+    </main>
+
+    <div
+      class="cart-overlay"
+      id="cart-overlay"
+      onclick="toggleCart(false)"
+    ></div>
+    <div class="cart-offcanvas" id="cart-offcanvas">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid var(--border);
+          padding-bottom: 15px;
+        "
+      >
+        <h2><i class="fas fa-shopping-cart"></i> Sepetin</h2>
+        <span class="close" onclick="toggleCart(false)" style="position: static"
+          >&times;</span
+        >
+      </div>
+      <div
+        id="cart-items"
+        style="flex: 1; overflow-y: auto; margin: 15px 0"
+      ></div>
+      <div style="padding-top: 15px; border-top: 1px solid var(--border)">
+        <div style="display: flex; gap: 10px; margin-bottom: 10px">
+          <input
+            type="text"
+            id="promo-code-input"
+            placeholder="İndirim Kodu"
+            style="flex: 1"
+          /><button class="btn-outline" onclick="applyPromoCode()">
+            Uygula
+          </button>
+        </div>
+        <div
+          id="promo-message"
+          style="font-size: 0.85rem; font-weight: bold; margin-bottom: 10px"
+        ></div>
+        <div class="cart-total" style="text-align: right">
+          <div
+            style="
+              font-size: 1.4rem;
+              color: var(--secondary);
+              font-weight: bold;
+            "
+          >
+            Toplam: <span id="total-price">0</span> TL
+          </div>
+        </div>
+        <button
+          class="btn-pay"
+          onclick="proceedToPayment()"
+          style="width: 100%; margin-top: 15px; padding: 15px"
+        >
+          Ödemeye Geç
+        </button>
+      </div>
+    </div>
+
+    <div id="favorites-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('favorites-modal')"
+          >&times;</span
+        >
+        <h2>
+          <i class="fas fa-heart" style="color: #ff4d4d"></i> İstek Listem
+        </h2>
+        <div id="favorites-list"></div>
+      </div>
+    </div>
+    <div
+      id="easter-egg-modal"
+      class="modal"
+      style="background: rgba(0, 0, 0, 0.95)"
+    >
+      <div
+        style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+        "
+      >
+        <div style="font-size: 6rem; animation: pulse 1s infinite">🌀</div>
+        <h1 style="color: #ffd700; font-family: monospace; font-size: 2.5rem">
+          Gizli Gümüş Kanat'ı Buldun!
+        </h1>
+        <p style="color: white; font-size: 1.2rem">
+          LUGIA50 kodunu kullanarak %50 indirim kazan!
+        </p>
+        <button class="btn-pay" onclick="closeModal('easter-egg-modal')">
+          Maceraya Dön
+        </button>
+      </div>
+    </div>
+    <div id="payment-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('payment-modal')">&times;</span>
+        <h2><i class="fas fa-credit-card"></i> Güvenli Ödeme</h2>
+        <input type="text" placeholder="Kart Üzerindeki İsim" /><input
+          type="text"
+          placeholder="Kart Numarası"
+        />
+        <div style="display: flex; gap: 10px">
+          <input type="text" placeholder="AA/YY" style="flex: 1" /><input
+            type="text"
+            placeholder="CVV"
+            style="flex: 1"
+          />
+        </div>
+        <button
+          class="btn-pay"
+          onclick="completeOrder()"
+          style="width: 100%; margin-top: 15px"
+        >
+          Ödemeyi Tamamla
+        </button>
+      </div>
+    </div>
+    <div id="auth-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('auth-modal')">&times;</span>
+        <div style="display: flex; gap: 10px; margin-bottom: 20px">
+          <button
+            class="filter-btn active"
+            id="tab-login"
+            onclick="switchAuthTab('login')"
+            style="flex: 1"
+          >
+            Giriş Yap</button
+          ><button
+            class="filter-btn"
+            id="tab-register"
+            onclick="switchAuthTab('register')"
+            style="flex: 1"
+          >
+            Kayıt Ol
+          </button>
+        </div>
+        <h2 id="auth-title">Giriş Yap</h2>
+        <input
+          type="text"
+          id="auth-username"
+          placeholder="Kullanıcı Adı"
+        /><input
+          type="password"
+          id="auth-password"
+          placeholder="Şifre"
+        /><button
+          class="btn-pay"
+          id="auth-action-btn"
+          onclick="handleAuth()"
+          style="width: 100%; margin-top: 15px"
+        >
+          Giriş Yap
+        </button>
+      </div>
+    </div>
+
+    <div id="profile-modal" class="modal">
+      <div class="modal-content" style="text-align: center">
+        <span class="close" onclick="closeModal('profile-modal')">&times;</span>
+        <div
+          style="
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 10px;
+          "
+        >
+          <img
+            id="profile-avatar-img"
+            src=""
+            style="
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+              object-fit: cover;
+              border: 3px solid var(--secondary);
+            "
+          /><label
+            for="avatar-upload"
+            style="
+              position: absolute;
+              bottom: 0;
+              right: 0;
+              background: var(--primary);
+              color: white;
+              border-radius: 50%;
+              width: 32px;
+              height: 32px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+            "
+            ><i class="fas fa-camera"></i></label
+          ><input
+            type="file"
+            id="avatar-upload"
+            accept="image/*"
+            style="display: none"
+            onchange="changeAvatar(event)"
+          />
+        </div>
+        <h2 id="profile-username-display" style="margin-bottom: 20px"></h2>
+        <h3
+          style="
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+          "
+        >
+          <i class="fas fa-trophy" style="color: #ffd700"></i> Başarımlarım
+        </h3>
+        <div
+          id="achievements-list"
+          style="display: flex; gap: 10px; flex-wrap: wrap; margin: 15px 0"
+        ></div>
+        <h3
+          style="
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+          "
+        >
+          <i class="fas fa-box-open"></i> Siparişlerim
+        </h3>
+        <div
+          id="order-history-list"
+          style="
+            margin-top: 15px;
+            max-height: 250px;
+            overflow-y: auto;
+            text-align: left;
+          "
+        ></div>
+      </div>
+    </div>
+
+    <div id="product-detail-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('product-detail-modal')"
+          >&times;</span
+        >
+        <div id="product-detail-content"></div>
+        <hr style="border-color: rgba(128, 128, 128, 0.2); margin: 20px 0" />
+        <div class="comments-section">
+          <h3 class="decipher-title">Değerlendirmeler</h3>
+          <div id="comments-list" style="margin-bottom: 15px"></div>
+          <div class="add-comment"></div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="dungeon-modal"
+      class="modal"
+      style="background: rgba(0, 0, 0, 0.95)"
+    >
+      <div
+        class="modal-content"
+        style="
+          background: #111;
+          border: 2px solid #ff4d00;
+          text-align: center;
+          max-width: 600px;
+        "
+      >
+        <span class="close" onclick="closeDungeon()">&times;</span>
+        <h2
+          style="
+            color: #ff4d00;
+            font-family: monospace;
+            text-shadow: 0 0 10px #ff4d00;
+          "
+        >
+          404 ZİNDANI
+        </h2>
+        <p style="color: #ccc; font-size: 0.9rem; margin-bottom: 20px">
+          Zıplamak için <b>BOŞLUK (SPACE)</b> tuşuna bas. 50 puana ulaş!
+        </p>
+        <div
+          id="game-area"
+          style="
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: #222;
+            border-bottom: 4px solid #555;
+            overflow: hidden;
+            border-radius: 8px;
+          "
+          onclick="jumpDino()"
+        >
+          <div
+            id="game-player"
+            style="
+              position: absolute;
+              bottom: 0;
+              left: 50px;
+              font-size: 3rem;
+              transition: bottom 0.3s;
+            "
+          >
+            🤺
+          </div>
+          <div
+            id="game-obstacle"
+            style="position: absolute; bottom: 0; right: -50px; font-size: 3rem"
+          >
+            🐉
+          </div>
+        </div>
+        <div
+          style="
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00d4ff;
+          "
+        >
+          Skor: <span id="game-score">0</span>
+        </div>
+        <div
+          id="game-over-msg"
+          style="
+            display: none;
+            color: #ff4d4d;
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+          "
+        >
+          Öldün! Tekrar zıpla.
+        </div>
+      </div>
+    </div>
+
+    <div id="toast-container"></div>
+    <div id="pixel-companion" onclick="pokeCompanion()">
+      <div id="companion-speech"></div>
+      <div
+        id="companion-sprite"
+        style="filter: drop-shadow(2px 4px 0px var(--primary))"
+      >
+        🗡️
+      </div>
+    </div>
+    <button
+      id="bgm-toggle"
+      class="music-btn"
+      onclick="toggleBGM()"
+      title="Atmosfer Müziği"
+    >
+      <i class="fas fa-volume-mute"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
