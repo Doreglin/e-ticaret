@@ -103,20 +103,27 @@ Siber-ağı kendi yerel makinenizde (Localhost) çalıştırmak için aşağıda
 * [Microsoft SQL Server (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
 
 ### 2. Projeyi Klonlayın
-```bash
+
+**bash**
 git clone [https://github.com/KULLANICI_ADIN/satrat-cephanelik.git](https://github.com/KULLANICI_ADIN/satrat-cephanelik.git)
 cd satrat-cephanelik
+
 ----
-3. Gerekli Kütüphaneleri Yükleyin
+
+### 3. Gerekli Kütüphaneleri Yükleyin
 npm init -y
 npm install express mssql cors mssql/msnodesqlv8
+
 ----
-4. Veritabanını (MSSQL) Hazırlayın
+
+### 4. Veritabanını (MSSQL) Hazırlayın
 SQL Server Management Studio'yu (SSMS) açın.
 satrat_db adında yeni bir veritabanı oluşturun.
 Proje dosyaları içinde bulunan SQL sorgularını çalıştırarak products, users, orders, comments ve favorites tablolarını oluşturun.
 server.js dosyasındaki veritabanı bağlantı (ConnectionString) ayarlarını kendi bilgisayarınızın SQL Server adına göre güncellediğinizden emin olun.
+
 ----
+
 terminale node server.js yazın
 
 
