@@ -44,6 +44,9 @@ Bu siber-bölümde; platformun kullanıcı arayüzüne, yöneticiler için tasar
 
 *Bu görsel, **Swiper.js** kütüphanesi tarafından desteklenen imzamız niteliğindeki 3D Coverflow Slider'ı barındıran ana arayüzü sergilemektedir.*
 
+----
+
+
 #### Şekil 2: Dinamik Izgara ve Stok Yönetimi
 
 <img width="1901" height="968" alt="Ekran görüntüsü 2026-03-09 110118" src="https://github.com/user-attachments/assets/805ee5a4-1bd0-4300-9c9b-ea0354720639" />
