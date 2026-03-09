@@ -44,15 +44,11 @@ Bu siber-bölümde; platformun kullanıcı arayüzüne, yöneticiler için tasar
 
 *Bu görsel, **Swiper.js** kütüphanesi tarafından desteklenen imzamız niteliğindeki 3D Coverflow Slider'ı barındıran ana arayüzü sergilemektedir.*
 
-**Teknik Analiz (CSS Grid & Swiper.js):** Bu arayüz sadece görsel bir şölen değil, aynı zamanda teknik bir başyapıttır. Ana ürün vitrini, dinamik kart yerleşimleri için **CSS Grid** ve 3D dönen kaydırıcı efekti için **Swiper.js** kombinasyonu kullanılarak inşa edilmiştir. Eşaralı fontlar (`Consolas`, `Courier New`) ve butonlar ile başlıklar üzerindeki keskin neon parlamalar (`box-shadow` ve `text-shadow`), modern bir e-ticaret platformunun netliğini korurken kullanıcıyı siberpunk atmosferinin içine çekmek için özenle kodlanmıştır.
-
 #### Şekil 2: Dinamik Izgara ve Stok Yönetimi
 
 <img width="1901" height="968" alt="Ekran görüntüsü 2026-03-09 110118" src="https://github.com/user-attachments/assets/805ee5a4-1bd0-4300-9c9b-ea0354720639" />
 
 *Bu görsel, farklı ekipman kategorilerini ve canlı stok izleme sistemini çalışırken gösteren dinamik **CSS Grid** yerleşimimizi sergilemektedir.*
-
-**Teknik Analiz (Stok ve Tükendi Motoru):** Ürün ızgarası, modüler CSS yaklaşımımızın bir kanıtıdır. Esnek (responsive) bir `repeat(auto-fit, minmax(280px, 1fr))` formülüyle **CSS Grid** kullanır ve kart yerleşimini her ekran boyutuna otomatik olarak adapte eder. En önemlisi, bu ekran arka uç (backend) entegrasyonumuzu doğrular: "Katana Red-Switch Klavye" gibi ürünler, gerçek zamanlı **MSSQL** stok durumlarına göre dinamik olarak "TÜKENDİ" olarak işaretlenir; bu da dinamik DOM manipülasyonumuz ile veritabanı senkronizasyonumuzun kanıtıdır.
 
 ---
 
@@ -62,8 +58,6 @@ Bu siber-bölümde; platformun kullanıcı arayüzüne, yöneticiler için tasar
 
 *Yeni ganimetleri MSSQL veritabanına enjekte etmek için gizli bir şifre tetikleyicisi aracılığıyla gizli komuta merkezine erişim.*
 
-**Teknik Analiz (CRUD & DOM Injection):** Bu gizli panel, tek bir satır SQL kodu yazmaya gerek kalmadan veritabanını yönetmek için inşa edilmiş projenin taktiksel sinir merkezidir. JavaScript Mimari Raporumuzda detaylandırıldığı gibi, bu panel yalnızca arama çubuğuna gizli bir şifre dizisi girildikten sonra JS motorumuz tarafından dinamik olarak ekrana çizilir (DOM Injection) ve maksimum güvenlik sağlanır. Panel tam **CRUD (Create, Read, Update, Delete)** yeteneği sunarak, yöneticilerin parlak neon yeşili "SİSTEME ENJEKTE ET" butonuna tek bir tıklamasıyla yeni ürünleri, açıklamaları, fiyatları, emojileri ve stok seviyelerini doğrudan MSSQL veritabanına aktarmalarını sağlar.
-
 ---
 
 ### 🛡️ SPA Profili ve Sipariş Geçmişi (Kişiselleştirilmiş Veri)
@@ -71,8 +65,6 @@ Bu siber-bölümde; platformun kullanıcı arayüzüne, yöneticiler için tasar
 <img width="1919" height="970" alt="Ekran görüntüsü 2026-03-09 110130" src="https://github.com/user-attachments/assets/55e5cbe5-cf59-4091-9179-1aea2372135b" />
 
 *Kullanıcının benzersiz kimliğini ve sipariş geçmişini doğrudan MSSQL veritabanından çeken tam ekran, Tek Sayfa Uygulaması (SPA) kişiselleştirilmiş profil sayfasına bir bakış.*
-
-**Teknik Analiz (SPA & Kişiselleştirilmiş SQL Verisi):** Bu ekran, projemizin **Full-Stack kişiselleştirilmiş veri entegrasyonunun** kritik bir kanıtıdır. Kullanıcı profil butonuna tıkladığında, `script.js` motoru ana mağazayı gizler ve sayfanın tamamını yenilemeden (SPA mimarisi) bu kişiselleştirilmiş profili dinamik olarak ekrana çizer. Sistem Node.js'e **asenkron (`async/await`) bir API çağrısı** yapar ve o da sırasıyla MSSQL'den yalnızca o belirli kullanıcının detaylı verilerini (isim, soyisim, telefon vb.) ve tüm sipariş geçmişini çeker. Özel `ui-avatars` profil resminden, benzersiz sipariş kodlarına sahip detaylı faturalara kadar ortaya çıkan bu arayüz, giriş yapmış kullanıcı (Doreglin) için anında oluşturulur ve güvenli, kusursuz çalışan backend-to-frontend veri hattımızı (pipeline) doğrular.
 
 ---
 
