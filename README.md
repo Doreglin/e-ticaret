@@ -126,4 +126,22 @@ server.js dosyasındaki veritabanı bağlantı (ConnectionString) ayarlarını k
 
 terminale node server.js yazın
 
+----
+
+## 📂 Proje Yapısı (Project Structure)
+
+```text
+satrat-cephanelik/
+│
+├── node_modules/             # Yüklenen backend kütüphaneleri (Express, mssql, cors)
+│
+├── index.html                # Ana SPA iskeleti, Modallar ve UI bileşenleri
+├── style.css                 # CSS Grid/Flexbox, Tema değişkenleri ve Animasyonlar
+├── script.js                 # Frontend motoru (DOM, Fetch API, Auth, Sepet, Swiper)
+│
+├── server.js                 # Node.js backend sunucusu, MSSQL bağlantısı ve API rotaları
+│
+├── package.json              # Proje bağımlılıkları ve npm yapılandırma dosyası
+├── package-lock.json         # Kilitlenmiş bağımlılık sürümleri
+└── README.md                 # Proje dökümantasyonu
 
