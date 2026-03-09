@@ -2,8 +2,6 @@
 
 S@TRAT, standart e-ticaret sitelerinin sıkıcı beyaz arayüzlerini ve sıradan sepet mantıklarını yıkan; "Siberpunk ve RPG" elementleriyle donatılmış Full-Stack bir web uygulamasıdır. Kullanıcılar (Siber-Savaşçılar) sisteme kayıt olabilir, efsanevi kılıçlar, zırhlar veya kaçak siber-donanımlar satın alabilir ve tam teşekküllü bir veritabanı motoru üzerinde işlem yapabilirler.
 
-![S@TRAT Banner](https://via.placeholder.com/1000x300/0a0a0a/39ff14?text=S@TRAT+|+SIBER-MECH+CEPHANELIK)
-
 ##  Sistem Özellikleri (Features)
 
 *  Dinamik Stok ve Envanter Motoru: Gerçek zamanlı stok kontrolü. Stok sıfırlandığında ürün kilitlenir ve "TÜKENDİ" ibaresi belirir.
